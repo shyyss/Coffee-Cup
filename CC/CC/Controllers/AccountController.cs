@@ -31,9 +31,8 @@ namespace CC.Controllers
                     Session["UserName"] = model.UserName;
                     Session["UserSurname"] = model.UserSurname;
                 }
-
-                return RedirectToAction("Index", "Home");
             }
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: Account/Login
@@ -60,9 +59,8 @@ namespace CC.Controllers
                 {
                     ViewBag.ErrorLogin = "Извините, проверьте правильность данных, вы где-то ошиблись";
                 }
-
-                return RedirectToAction("Index", "Home");
             }
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: Account/Logout
