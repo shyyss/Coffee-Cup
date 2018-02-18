@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "Logout";
+}
+
+<h2>Выход из аккаунта</h2>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>@ViewBag.Title</title>
+</head>
+<body>
+    @using (Html.BeginForm("Logout", "Account"))
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>Вы действительно хотите выйти?</h4>
+            <hr />
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Выйти" class="btn btn-default" />
+                </div>
+            </div>
+
+            <div>
+                @Html.ActionLink("На главную", "Index", "Home")
+            </div>
+        </div>
+    }
+</body>
+</html>
+

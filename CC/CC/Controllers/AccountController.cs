@@ -22,10 +22,14 @@ namespace CC.Controllers
         {
             using (var context = new ListOfUsers())
             {
-                if (model.Password == model.ConfirmPassword)
+                if (model.UserPassword == model.ConfirmPassword)
                 {
                     context.TableOfUsers.Add(model);
                     context.SaveChanges();
+
+                    Session["UserId"] = model.Id.ToString() + model.UserName + model.UserSurname;
+                    Session["UserName"] = model.UserName;
+                    Session["UserSurname"] = model.UserSurname;
                 }
 
                 return RedirectToAction("Index", "Home");
@@ -33,7 +37,7 @@ namespace CC.Controllers
         }
 
         // GET: Account/Login
-        public ActionResult Logint()
+        public ActionResult Login()
         {
             return View();
         }
@@ -44,7 +48,7 @@ namespace CC.Controllers
         {
             using (var context = new ListOfUsers())
             {
-                var user = context.TableOfUsers.Single(m => m.UserName == model.UserName && m.UserSurname == model.UserSurname && m.Password == model.Password);
+                var user = context.TableOfUsers.Single(m => m.UserName == model.UserName && m.UserSurname == model.UserSurname && m.UserPassword == model.UserPassword);
 
                 if (user != null)
                 {
@@ -61,11 +65,17 @@ namespace CC.Controllers
             }
         }
 
+        // GET: Account/Logout
+        public ActionResult Logout(int? id)
+        {
+            return View();
+        }
+
         // POST: Account/Logout
         [HttpPost]
-        public ActionResult Logout(int? id, User model)
+        public ActionResult Logout(User model)
         {
-            if (id == model.Id)
+            if (model.Id != null)
             {
                 Session["UserId"] = null;
                 Session["UserName"] = null;

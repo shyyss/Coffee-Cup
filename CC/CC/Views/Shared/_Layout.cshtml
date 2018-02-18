@@ -1,11 +1,13 @@
-﻿<!DOCTYPE html>
+﻿@model CC.Models.User
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/MySS.css" rel="stylesheet" type="text/css"/>
+    <link href="~/Content/MySS.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
 </head>
@@ -22,6 +24,17 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    @if (Session["UserId"] != null)
+                    {
+                        <li>@Html.ActionLink("Мой аккаунт", "", "")</li>
+                        <li>@Html.ActionLink("Выйти", "Logout", "Account")</li>
+                    }
+                    else
+                    {
+                        <li>@Html.ActionLink("Регистрация", "Create", "Account")</li>
+                        <li>@Html.ActionLink("Авторизация", "Login", "Account")</li>
+
+                    }
                 </ul>
             </div>
         </div>

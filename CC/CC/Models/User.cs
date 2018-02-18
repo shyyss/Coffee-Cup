@@ -28,9 +28,9 @@ namespace CC.Models
         [Display(Name = "Пароль")]
         [DataType(DataType.Password)]
         [StringLength(25, ErrorMessage = "Максимальная длина - {0} символов, минимальная длина - {2} символов", MinimumLength = 5)]
-        public string Password { get; set; }
+        public string UserPassword { get; set; }
 
-        [Compare("Password", ErrorMessage = "Подтвердите Ваш пароль")]
+        [Compare("UserPassword", ErrorMessage = "Подтвердите Ваш пароль")]
         [DataType(DataType.Password)]
         [Display(Name = "Подтверждение пароля")]
         public string ConfirmPassword { get; set; }
