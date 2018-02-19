@@ -64,7 +64,7 @@ namespace CC.Controllers
         }
 
         // GET: Account/Logout
-        public ActionResult Logout(int? id)
+        public ActionResult Logout()
         {
             return View();
         }
